@@ -4,9 +4,6 @@
 
 Petit projet perso pour apprendre Ansible.
 
-L'idée est simple : je prends un serveur Debian ou Ubuntu tout neuf et je le sécurise avec **une seule commande** au lieu de taper les mêmes choses à la main à chaque fois.
-
-Je l'ai testé sur des VM VirtualBox chez moi. Je suis autodidacte en informatique alors c'est aussi une façon de montrer ce que je sais faire.
 
 ## Ce que ça fait
 
@@ -59,7 +56,7 @@ Ensuite :
 cp inventory.example.ini inventory.ini
 ```
 
-Ouvre `inventory.ini` et mets l'IP de ton serveur et ton utilisateur. Ce fichier est ignoré par git donc aucun mot de passe ne part sur GitHub.
+Ouvre `inventory.ini` et mets l'IP de ton serveur et ton utilisateur. 
 
 Premier lancement (connexion par mot de passe une seule fois) :
 
