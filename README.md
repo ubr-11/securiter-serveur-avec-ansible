@@ -106,6 +106,3 @@ sudo fail2ban-client set apache-admin unbanip <IP>
 
 À chaque push GitHub Actions lance `yamllint` puis `ansible-lint` puis un `--syntax-check` du playbook. Si je casse quelque chose je le vois tout de suite.
 
-## Licence
-
-MIT
