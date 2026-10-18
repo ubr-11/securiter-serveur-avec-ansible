@@ -1,0 +1,18 @@
+# Gere par Ansible
+[sshd]
+enabled = true
+port = {{ ssh_port }}
+maxretry = {{ f2b_ssh_maxretry }}
+findtime = {{ f2b_findtime }}
+bantime = {{ f2b_bantime }}
+backend = systemd
+
+[apache-admin]
+enabled = true
+port = http,https
+filter = apache-admin
+logpath = /var/log/apache2/access.log
+maxretry = {{ f2b_apache_maxretry }}
+findtime = {{ f2b_findtime }}
+bantime = {{ f2b_bantime }}
+backend = auto

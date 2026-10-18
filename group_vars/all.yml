@@ -1,0 +1,12 @@
+---
+# Port SSH apres durcissement
+ssh_port: 2222
+
+# Cle publique de la machine de controle (deployee sur le serveur)
+ssh_public_key_file: ~/.ssh/id_ed25519.pub
+
+# fail2ban
+f2b_bantime: 1h
+f2b_findtime: 10m
+f2b_ssh_maxretry: 5
+f2b_apache_maxretry: 5

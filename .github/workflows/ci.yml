@@ -1,0 +1,17 @@
+---
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install yamllint ansible ansible-lint
+      - run: yamllint .
+      - run: ansible-lint
+      - run: ansible-playbook --syntax-check setup_server.yml

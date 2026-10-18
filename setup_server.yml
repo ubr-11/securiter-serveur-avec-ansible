@@ -1,0 +1,10 @@
+---
+- name: Setup serveur
+  hosts: web
+  become: true
+
+  roles:
+    - apache
+    - ssh
+    - ufw
+    - fail2ban

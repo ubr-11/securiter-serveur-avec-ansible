@@ -1,0 +1,5 @@
+# Gere par Ansible
+# Bannit les IP qui sondent /admin et recoivent 401 403 ou 404
+[Definition]
+failregex = ^<HOST> \S+ \S+ \[[^\]]+\] "(?:GET|POST|HEAD) /admin\S* HTTP/\S+" (?:401|403|404)
+ignoreregex =

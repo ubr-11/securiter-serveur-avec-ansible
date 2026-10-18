@@ -1,0 +1,40 @@
+---
+- name: Installer fail2ban et python3-systemd
+  ansible.builtin.apt:
+    name:
+      - fail2ban
+      - python3-systemd
+    state: present
+    update_cache: true
+
+- name: Supprimer l'ancien fichier de jail sshd
+  ansible.builtin.file:
+    path: /etc/fail2ban/jail.d/sshd.local
+    state: absent
+  notify: Restart fail2ban
+
+- name: Filtre fail2ban pour les tentatives sur /admin
+  ansible.builtin.template:
+    src: apache-admin.conf.j2
+    dest: /etc/fail2ban/filter.d/apache-admin.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart fail2ban
+
+- name: Jails fail2ban SSH et Apache
+  ansible.builtin.template:
+    src: hardening.local.j2
+    dest: /etc/fail2ban/jail.d/hardening.local
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart fail2ban
+
+- name: Demarrer et activer fail2ban
+  ansible.builtin.systemd:
+    name: fail2ban
+    state: started
+    enabled: true
+    masked: false
+    daemon_reload: true

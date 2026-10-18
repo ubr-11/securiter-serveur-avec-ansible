@@ -1,0 +1,29 @@
+---
+- name: Installer ufw
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+    update_cache: true
+
+- name: UFW - autoriser les ports necessaires
+  community.general.ufw:
+    rule: allow
+    port: "{{ item.port }}"
+    proto: tcp
+    comment: "{{ item.comment }}"
+  loop:
+    - port: "{{ ssh_port }}"
+      comment: "SSH"
+    - port: "80"
+      comment: "HTTP"
+    - port: "443"
+      comment: "HTTPS"
+
+- name: UFW - politique par defaut deny en entree
+  community.general.ufw:
+    default: deny
+    direction: incoming
+
+- name: UFW - activer le pare-feu
+  community.general.ufw:
+    state: enabled
