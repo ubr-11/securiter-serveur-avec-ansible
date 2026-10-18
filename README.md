@@ -5,7 +5,7 @@
 Petit projet perso pour apprendre Ansible.
 
 
-## Ce que ça fait
+# Ce que ça fait
 
 Le playbook s'occupe de quatre choses :
 
@@ -16,14 +16,14 @@ Le playbook s'occupe de quatre choses :
 
 On peut le relancer autant de fois qu'on veut sans rien casser. Ansible ne touche que ce qui doit changer et les services ne redémarrent que si un fichier a bougé.
 
-## Pourquoi ces choix
+# Pourquoi ces choix
 
 - **Pas de mot de passe SSH** : c'est la porte d'entrée préférée des bots qui font du brute-force. Avec une clé ils ne peuvent rien faire
 - **Port 2222** : je sais que ça ne protège pas vraiment. Ça réduit juste le bruit dans les logs
 - **Un filtre pour `/admin`** : les scanners testent toujours les mêmes URL. Autant les bloquer dès les premières tentatives
 - **Un risque à connaître** : couper les mots de passe peut t'enfermer dehors si ta clé n'est pas sur le serveur. Du coup le playbook vérifie d'abord que la clé existe et la dépose lui-même avant de tout verrouiller
 
-## Comment c'est rangé
+# Comment c'est rangé
 
 ```
 .
@@ -40,7 +40,7 @@ On peut le relancer autant de fois qu'on veut sans rien casser. Ansible ne touch
 
 Chaque rôle fait une seule chose. C'est plus facile à relire qu'un gros fichier de 150 lignes.
 
-## Le lancer chez toi
+# Le lancer chez toi
 
 Il te faut Ansible sur ta machine et un serveur Debian ou Ubuntu accessible en SSH.
 
@@ -72,7 +72,7 @@ ssh -p 2222 ton_user@192.168.1.18
 
 Pour relancer le playbook plus tard ajoute dans `inventory.ini` `ansible_port=2222` et `ansible_ssh_private_key_file=~/.ssh/id_ed25519`. Le port 22 est fermé après le premier passage.
 
-## Vérifier que ça marche
+# Vérifier que ça marche
 
 Sur le serveur :
 
@@ -102,7 +102,8 @@ sudo fail2ban-client set apache-admin unbanip <IP>
 ![fail2ban](docs/fail2ban-ban.png)
 -->
 
-## Vérifications automatiques
+# Vérifications automatiques
 
-À chaque push GitHub Actions lance `yamllint` puis `ansible-lint` puis un `--syntax-check` du playbook. Si je casse quelque chose je le vois tout de suite.
+À chaque push GitHub Actions lance `yamllint` puis `ansible-lint` puis un `--syntax-check` du playbook. 
+Si quelque chose casse on  le vois tout de suite.
 
